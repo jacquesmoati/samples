@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Java EE - Inject - Produces - Servlets">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/" source-path="/ress"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/ress"/>
+        <property name="java-output-path" value="/Java EE - Inject - Produces - Servlets/build/classes"/>
+        <property name="context-root" value="JavaEE-Inject-Produces-Servlets"/>
+    </wb-module>
+</project-modules>

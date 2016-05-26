@@ -2,8 +2,7 @@
     <wb-module deploy-name="Java EE - Inject - Produces - Servlets">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/" source-path="/ress"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/ress"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="java-output-path" value="/Java EE - Inject - Produces - Servlets/build/classes"/>
         <property name="context-root" value="JavaEE-Inject-Produces-Servlets"/>
     </wb-module>

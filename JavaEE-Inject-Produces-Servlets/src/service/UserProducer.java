@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 
-import ent.User;
+import model.User;
 
 @SessionScoped
 public class UserProducer implements Serializable {

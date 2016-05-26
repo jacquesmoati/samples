@@ -18,7 +18,8 @@ public class ConfigureProducerServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		userProducer.setStartName('r');
-		resp.getWriter().write("Set start name.");
+		final char startName = 'r';
+		userProducer.setStartName(startName);
+		resp.getWriter().write("Set start name: " + startName + ".");
 	}
 }

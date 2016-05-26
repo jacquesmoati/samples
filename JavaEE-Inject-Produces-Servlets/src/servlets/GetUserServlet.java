@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ent.User;
+import model.User;
 
-@WebServlet("/createUserServlet")
-public class CreateUserServlet extends HttpServlet {
+@WebServlet("/getUserServlet")
+public class GetUserServlet extends HttpServlet {
 	@Inject
 	private User user;
 

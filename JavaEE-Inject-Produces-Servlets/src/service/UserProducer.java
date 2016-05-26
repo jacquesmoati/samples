@@ -11,6 +11,10 @@ import ent.User;
 public class UserProducer implements Serializable {
 	private char startName;
 
+	public UserProducer() {
+		startName = ' ';
+	}
+
 	@Produces
 	public @SessionScoped User createUser() {
 		final User user = new User();

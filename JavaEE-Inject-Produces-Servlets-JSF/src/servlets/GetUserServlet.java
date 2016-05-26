@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 
-@WebServlet("/createUserServlet")
-public class CreateUserServlet extends HttpServlet {
+@WebServlet("/getUserServlet")
+public class GetUserServlet extends HttpServlet {
 	@Inject
 	private User user;
 

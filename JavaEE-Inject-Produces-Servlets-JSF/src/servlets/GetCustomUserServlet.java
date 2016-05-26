@@ -17,9 +17,9 @@ import javax.transaction.Transactional;
 import model.User;
 import service.UserProducer;
 
-@WebServlet("/createCustomUserServlet")
+@WebServlet("/getCustomUserServlet")
 @Transactional
-public class CreateCustomUserServlet extends HttpServlet {
+public class GetCustomUserServlet extends HttpServlet {
 	@PersistenceContext
 	private EntityManager em;
 
@@ -31,7 +31,7 @@ public class CreateCustomUserServlet extends HttpServlet {
 
 	/**
 	 * <p>
-	 * This method will sometimes produce Chomsky and sometimes Rawls.
+	 * This method will sometimes mention Chomsky and sometimes Rawls.
 	 * </p>
 	 * <p>
 	 * Try to find out why.
@@ -39,10 +39,11 @@ public class CreateCustomUserServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		@SuppressWarnings("resource")
-		final PrintWriter writer = resp.getWriter();
 		userProducer.setStartName('c');
 		final User user = userInstance.get();
+
+		@SuppressWarnings("resource")
+		final PrintWriter writer = resp.getWriter();
 		writer.write(user.getName());
 	}
 }

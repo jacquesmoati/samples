@@ -1,4 +1,4 @@
-package launch;
+package io.github.oliviercailloux.javase_maven_jul_hib_h2.launch;
 
 import java.util.logging.Logger;
 
@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import entities.MyEntity;
+import io.github.oliviercailloux.javase_maven_jul_hib_h2.entities.MyEntity;
 
 public class Launcher {
 	@SuppressWarnings("unused")

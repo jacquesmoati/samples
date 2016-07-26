@@ -1,4 +1,4 @@
-package entities;
+package io.github.oliviercailloux.javase_maven_jul_hib_h2.entities;
 
 import java.io.Serializable;
 

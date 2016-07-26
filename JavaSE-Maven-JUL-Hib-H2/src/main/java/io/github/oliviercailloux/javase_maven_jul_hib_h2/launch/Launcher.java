@@ -18,7 +18,6 @@ public class Launcher {
 		new Launcher().launch();
 	}
 
-	@SuppressWarnings("boxing")
 	public void launch() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("MyUnit");
 		EntityManager em1 = factory.createEntityManager();

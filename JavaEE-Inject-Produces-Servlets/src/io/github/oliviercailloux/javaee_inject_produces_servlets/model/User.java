@@ -7,7 +7,7 @@ public class User implements Serializable {
 	private String name;
 
 	public User() {
-		/** Default constructor for instanciation by the container. */
+		/** Default constructor for instantiation by the container. */
 	}
 
 	public String getName() {

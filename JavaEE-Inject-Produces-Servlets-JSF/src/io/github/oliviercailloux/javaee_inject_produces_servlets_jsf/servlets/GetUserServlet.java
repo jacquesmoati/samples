@@ -1,4 +1,4 @@
-package servlets;
+package io.github.oliviercailloux.javaee_inject_produces_servlets_jsf.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.User;
+import io.github.oliviercailloux.javaee_inject_produces_servlets_jsf.model.User;
 
 @WebServlet("/getUserServlet")
 public class GetUserServlet extends HttpServlet {

@@ -1,4 +1,4 @@
-package service;
+package io.github.oliviercailloux.javaee_inject_produces_servlets_jsf.service;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 
-import model.User;
+import io.github.oliviercailloux.javaee_inject_produces_servlets_jsf.model.User;
 
 @SessionScoped
 public class UserProducer implements Serializable {

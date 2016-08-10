@@ -1,4 +1,4 @@
-package servlets.advanced;
+package io.github.oliviercailloux.javaee_inject_produces_servlets.servlets.advanced;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
-import model.User;
-import service.UserProducer;
+import io.github.oliviercailloux.javaee_inject_produces_servlets.model.User;
+import io.github.oliviercailloux.javaee_inject_produces_servlets.service.UserProducer;
 
 @WebServlet("/getCustomUserServlet")
 @Transactional

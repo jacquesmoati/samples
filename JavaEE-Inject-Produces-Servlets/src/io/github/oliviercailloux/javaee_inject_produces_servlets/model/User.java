@@ -1,4 +1,4 @@
-package model;
+package io.github.oliviercailloux.javaee_inject_produces_servlets.model;
 
 import java.io.Serializable;
 

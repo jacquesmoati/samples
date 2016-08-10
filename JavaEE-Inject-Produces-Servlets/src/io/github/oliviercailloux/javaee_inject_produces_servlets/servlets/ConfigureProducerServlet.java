@@ -1,4 +1,4 @@
-package servlets;
+package io.github.oliviercailloux.javaee_inject_produces_servlets.servlets;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.UserProducer;
+import io.github.oliviercailloux.javaee_inject_produces_servlets.service.UserProducer;
 
 @WebServlet("/configureProducerServlet")
 public class ConfigureProducerServlet extends HttpServlet {

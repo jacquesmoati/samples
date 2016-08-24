@@ -14,6 +14,12 @@ public class Launcher {
 	private static final Logger LOGGER = Logger.getLogger(Launcher.class.getCanonicalName());
 
 	public static void main(String[] args) {
+		final String loggingConfigFilePathProperty = "java.util.logging.config.file";
+		final String loggingConfigFilePathValue = System.getProperty(loggingConfigFilePathProperty);
+		if (loggingConfigFilePathValue == null) {
+			LOGGER.warning("Property " + loggingConfigFilePathProperty
+					+ " not set. Logging will use its default configuration.");
+		}
 		LOGGER.info("Starting.");
 		new Launcher().launch();
 	}

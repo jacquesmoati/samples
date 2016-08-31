@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" lang="en">
+<f:metadata>
+	<f:viewParam id="start-param" name="start"
+		value="#{itemsSubsetRequest.start}">
+	</f:viewParam>
+	<f:viewParam name="end" value="#{itemsSubsetRequest.end}">
+		<f:validator binding="#{itemsSubsetRequest.endValidator}"></f:validator>
+	</f:viewParam>
+	<f:viewAction action="#{itemsSubsetRequest.populate}"></f:viewAction>
+</f:metadata>
+<head>
+<meta charset="utf-8" />
+<title>All items</title>
+</head>
+<body>
+	<h:messages></h:messages>
+	<h:panelGroup rendered="#{not facesContext.validationFailed}">
+		<p>
+			Here is your item sub-list, from
+			<h:outputText value="#{itemsSubsetRequest.start}" />
+			to
+			<h:outputText value="#{itemsSubsetRequest.end}." />
+		</p>
+		<p>
+			<h:outputText value="#{itemsSubsetRequest.subsetNames}" />
+		</p>
+	</h:panelGroup>
+</body>
+</html>

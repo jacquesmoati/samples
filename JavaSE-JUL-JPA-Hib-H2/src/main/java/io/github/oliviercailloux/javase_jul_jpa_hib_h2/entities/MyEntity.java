@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.javase_maven_jul_hib_h2.entities;
+package io.github.oliviercailloux.javase_jul_jpa_hib_h2.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

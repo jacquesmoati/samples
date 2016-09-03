@@ -1,3 +1,18 @@
+[[samples]]
+Samples
+-------
+
+Here are some samples about Java EE technologies (JPA in Java SE is
+covered as well). They serve two purposes:
+
+* give a head start to someone who wants a correctly configured, working
+project as a basis for work; and
+* support discussion around “best” practices by showing their
+applications in concrete, simple cases.
+
+Scroll down for the discussion about (what I consider to be) the best
+practices.
+
 [[common-features]]
 Common features
 ~~~~~~~~~~~~~~~

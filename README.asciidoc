@@ -1,6 +1,7 @@
-[[samples]]
-Samples
--------
+:toc:
+:sectanchors:
+
+= Samples
 
 Here are some samples about Java EE technologies (JPA in Java SE is
 covered as well). They serve two purposes:

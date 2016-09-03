@@ -1,29 +1,20 @@
-:toc:
-:sectanchors:
-
 = Samples
+:toc:
+:toc-placement: preamble
+:sectanchors:
 
 Here are some samples about Java EE technologies (JPA in Java SE is
 covered as well). They serve two purposes:
 
-* give a head start to someone who wants a correctly configured, working
-project as a basis for work; and
-* support discussion around “best” practices by showing their
-applications in concrete, simple cases.
+* give a head start (if you want a correctly configured project as a basis for work); and
+* support discussion around “best” practices by showing their applications in concrete, simple cases.
 
-Scroll down for the discussion about (what I consider to be) the best
-practices.
+Scroll down for the discussion about (what I consider to be) the best practices.
 
-[[common-features]]
-Common features
-~~~~~~~~~~~~~~~
-
+== The sample projects
 All projects use Maven.
 
-[[javaee-inject-produces-servlets]]
-JavaEE-Inject-Produces-Servlets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+=== JavaEE-Inject-Produces-Servlets
 Shows usage of CDI (Injection of managed beans) and producers together
 with simple servlets. Note that you do not need to understand producers
 to be able to use CDI, so do not look there yet if you just want to know
@@ -33,57 +24,36 @@ about the basics of CDI.
 advanced servlet also has a question that you might want to solve as an
 exercice (look at the Javadoc).
 
-[[javaee-inject-produces-servlets-jsf]]
-JavaEE-Inject-Produces-Servlets-JSF
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+=== JavaEE-Inject-Produces-Servlets-JSF
 Same as JavaEE-Inject-Produces-Servlets with a supplementary very simple
 JSF page that calls the producer.
 
-[[javaee-jpa-inject-servlets]]
-JavaEE-JPA-Inject-Servlets
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+=== JavaEE-JPA-Inject-Servlets
 A simple JPA project, using a single entity, simple CDI managed beans
 and two simple servlets (posting items and getting items).
 
 * The `advanced` package illustrates different transaction management
 approaches.
 
-[[javaee-jpa-jsf]]
-JavaEE-JPA-JSF
-~~~~~~~~~~~~~~
-
+=== JavaEE-JPA-JSF
 A simple JPA project with two simple JSF pages.
 
-* Also illustrated: link:#metamodel[typesafe JPA queries].
-* Also illustrated: link:#multifield[multi field validation].
+* Also illustrated: <<metamodel, typesafe JPA queries>>.
+* Also illustrated: <<multifield, multi field validation>>.
 
-[[javase-jul-jpa-hib-h2]]
-JavaSE-JUL-JPA-Hib-H2
-~~~~~~~~~~~~~~~~~~~~~
-
+=== JavaSE-JUL-JPA-Hib-H2
 A simple JavaSE project featuring JPA, starring Hibernate as a JPA
 provider and H2 as a DB provider. This sample project uses JUL as a
-logger (contradicting my link:#logging-choice[own preference]).
+logger (contradicting my <<logging-choice, own preference>>).
 
-[[maven-best-practices]]
-Maven best practices
-~~~~~~~~~~~~~~~~~~~~
-
-[[encoding]]
-Encoding
-^^^^^^^^
-
+== Maven best practices
+=== Encoding
 Include property
 `<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>` to
 ensure platform-independent behavior (and get rid of the warning Maven
 prints otherwise).
 
-[[java-version]]
-Java version
-^^^^^^^^^^^^
-
+=== Java version
 Include properties:
 `<maven.compiler.source>1.8</maven.compiler.source> <maven.compiler.target>1.8</maven.compiler.target>`
 (or adjust to the desired java version) to indicate which java version
@@ -93,10 +63,7 @@ supported] and is thus to be preferred to the more verbose explicit
 https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html[configuration]
 of the `maven-compiler-plugin`.
 
-[[do-not-require-web-descriptor]]
-Do not require web descriptor
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+=== Do not require web descriptor
 Web applications do not require a web descriptor (the `web.xml` file
 that goes in the `WEB-INF` folder). Maven however required it by default
 when asked to package a war file. If you do not need a web descriptor,
@@ -119,14 +86,8 @@ since more than 10 years, since Servlet 2.5 MR 5 (see JSR 340 Servlet
 http://download.oracle.com/otn-pub/jcp/servlet-3_1-fr-eval-spec/servlet-3_1-final.pdf[spec],
 A.7.6 and 10.13).]
 
-[[jpa-best-practices]]
-JPA best practices
-~~~~~~~~~~~~~~~~~~
-
-[[use-delimited-identifiers]]
-Use delimited identifiers
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
+== JPA best practices
+=== Use delimited identifiers
 Tell JPA to use delimited identifiers (see the object/relational xml
 mapping file, `orm.xml`, in the JPA samples). (See JSR 338 JPA 2.1
 link:[spec], section 2.13.) JPA will then “delimit” (quote) all SQL
@@ -140,10 +101,7 @@ https://www.drupal.org/node/141051[here]). A typical problem with non
 delimited identifiers occurs when using an entity named `User`: this may
 work on some DBMS and fail at runtime on others.
 
-[[metamodel-generator-for-typesafe-jpa-queries]]
-Metamodel generator for typesafe JPA queries
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+=== [[metamodel]]Metamodel generator for typesafe JPA queries
 To generate the metamodel for use with typesafe Criteria queries,
 suffices to include a metamodel generator in your classpath
 (http://hibernate.org/orm/tooling/[doc]). Set it to `<provided>` scope
@@ -158,14 +116,8 @@ generate the metamodel, see the project options at JPA / Canonical
 metamodel, but I don’t use that as it hinders compatibility of the
 project with other IDEs.)
 
-[[jsf-best-practices]]
-JSF best practices
-~~~~~~~~~~~~~~~~~~
-
-[[multiple-field-validation]]
-Multiple field validation
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
+== JSF best practices
+=== [[multifield]]Multiple field validation
 Sometimes the validation logic requires knowledge of the value of
 multiple fields. (Example: required `start` ≤ `end`, where `start` and
 `end` are two request parameters.) In such case I consider the usual JSF
@@ -178,14 +130,7 @@ http://stackoverflow.com/a/5897183/859604[here] and an alternative
 proposal
 http://balusc.omnifaces.org/2007/12/validator-for-multiple-fields.html[here].
 
-[[logging-best-practices]]
-Logging best practices
-~~~~~~~~~~~~~~~~~~~~~~
-
-[[framework]]
-Framework
-^^^^^^^^^
-
+== Logging best practices
+=== [[logging-choice]]Framework
 One of the PITA in Java world is the multiplicity of logging framework.
-My personal choice is to go for JUL for Java EE projects and SLF4J +
-logback for Java SE projects.
+My personal choice is to go for JUL for Java EE projects and SLF4J plus logback for Java SE projects.

@@ -101,7 +101,8 @@ https://www.drupal.org/node/141051[here]). A typical problem with non
 delimited identifiers occurs when using an entity named `User`: this may
 work on some DBMS and fail at runtime on others.
 
-=== [[metamodel]]Metamodel generator for typesafe JPA queries
+[[metamodel]]
+=== Metamodel generator for typesafe JPA queries
 To generate the metamodel for use with typesafe Criteria queries,
 suffices to include a metamodel generator in your classpath
 (http://hibernate.org/orm/tooling/[doc]). Set it to `<provided>` scope
@@ -117,7 +118,8 @@ metamodel, but I don’t use that as it hinders compatibility of the
 project with other IDEs.)
 
 == JSF best practices
-=== [[multifield]]Multiple field validation
+[[multifield]]
+=== Multiple field validation
 Sometimes the validation logic requires knowledge of the value of
 multiple fields. (Example: required `start` ≤ `end`, where `start` and
 `end` are two request parameters.) In such case I consider the usual JSF
@@ -131,6 +133,7 @@ proposal
 http://balusc.omnifaces.org/2007/12/validator-for-multiple-fields.html[here].
 
 == Logging best practices
-=== [[logging-choice]]Framework
+[[logging-choice]]
+=== Framework
 One of the PITA in Java world is the multiplicity of logging framework.
 My personal choice is to go for JUL for Java EE projects and SLF4J plus logback for Java SE projects.

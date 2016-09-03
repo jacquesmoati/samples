@@ -1,34 +1,44 @@
 package io.github.oliviercailloux.javase_maven_jul_hib_h2.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class MyEntity implements Serializable {
+public class MyEntity {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
 	private String name;
 
 	public MyEntity() {
-		super();
+		name = "";
 	}
 
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * Returns the item name.
+	 *
+	 * @return not <code>null</code>.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the item name.
+	 *
+	 * @param name
+	 *            <code>null</code> strings are converted to empty strings.
+	 */
 	public void setName(String name) {
-		this.name = name;
+		this.name = name == null ? "" : name;
 	}
 
 }

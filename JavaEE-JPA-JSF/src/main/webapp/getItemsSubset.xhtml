@@ -7,7 +7,6 @@
 		value="#{itemsSubsetRequest.start}">
 	</f:viewParam>
 	<f:viewParam name="end" value="#{itemsSubsetRequest.end}">
-		<f:validator binding="#{itemsSubsetRequest.endValidator}"></f:validator>
 	</f:viewParam>
 	<f:viewAction action="#{itemsSubsetRequest.populate}"></f:viewAction>
 </f:metadata>

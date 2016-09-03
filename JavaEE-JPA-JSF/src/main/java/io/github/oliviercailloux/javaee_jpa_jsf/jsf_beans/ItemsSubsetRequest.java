@@ -1,14 +1,10 @@
 package io.github.oliviercailloux.javaee_jpa_jsf.jsf_beans;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.Validator;
-import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -21,6 +17,12 @@ import io.github.oliviercailloux.javaee_jpa_jsf.service.ItemService;
 @RequestScoped
 @Named
 public class ItemsSubsetRequest {
+	/**
+	 * 422 Unprocessable Entity error code (see <a
+	 * href=https://tools.ietf.org/html/rfc4918#section-11.2>WebDAV</a>)
+	 */
+	private static final int UNPROCESSABLE = 422;
+
 	@Min(0)
 	private int end;
 
@@ -42,21 +44,6 @@ public class ItemsSubsetRequest {
 		return end;
 	}
 
-	public Validator getEndValidator() {
-		return new Validator() {
-			@Override
-			public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-				final UIInput startCmp = (UIInput) context.getViewRoot().findComponent("start-param");
-				final int startValue = ((Integer) startCmp.getValue()).intValue();
-				final int endValue = ((Integer) value).intValue();
-				if (!(startValue <= endValue)) {
-					final FacesMessage message = new FacesMessage("Start must be ≤ end");
-					throw new ValidatorException(message);
-				}
-			}
-		};
-	}
-
 	public int getStart() {
 		return start;
 	}
@@ -66,10 +53,15 @@ public class ItemsSubsetRequest {
 		return subsetNames;
 	}
 
-	public String populate() {
+	public String populate() throws IOException {
+		if (!(start <= end)) {
+			FacesContext.getCurrentInstance().getExternalContext().responseSendError(UNPROCESSABLE,
+					"Start must be ≤ end");
+			return "navigation outcome will be ignored";
+		}
+
 		assert (start <= end);
 		subsetNames = itemS.getSubsetNames(start, end);
-		/** Navigate action: stay in current page. */
 		return null;
 	}
 

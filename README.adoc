@@ -9,7 +9,9 @@ covered as well). They serve two purposes:
 * give a head start (if you want a correctly configured project as a basis for work); and
 * support discussion around “best” practices by showing their applications in concrete, simple cases.
 
-Scroll down for the discussion about (what I consider to be) the best practices.
+To access these samples with Eclipse, I recommend to first git clone this repository, then, from Eclipse, use `Import… Existing Projects`.
+
+Scroll down for the discussion about (what I consider to be) best practices.
 
 == The sample projects
 All projects use Maven and are designed for maximal compatibility. They should run on any Java EE 7 server. (Tested with GlassFish only.)

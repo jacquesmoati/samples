@@ -12,10 +12,10 @@ covered as well). They serve two purposes:
 Scroll down for the discussion about (what I consider to be) the best practices.
 
 == The sample projects
-All projects use Maven and are designed for maximal compatibility. They should run on any Java EE 7 server. (Tested with glassfish only.)
+All projects use Maven and are designed for maximal compatibility. They should run on any Java EE 7 server. (Tested with GlassFish only.)
 
 === JavaEE-Inject-Produces-Servlets
-Shows usage of CDI (Injection of managed beans) and producers together with simple servlets. This is a good sample _if you want to know about producers_. Otherwise, check a simpler CDI sample (see <<other-samples>>).
+Shows usage of CDI (Injection of managed beans) and producers together with simple servlets. This will be useful only if you want to know about producers. Otherwise, check a simpler CDI sample (see <<other-samples>>).
 
 * The `advanced` package illustrates dynamic instance creation. That
 advanced servlet also has a question that you might want to solve as an
@@ -138,6 +138,7 @@ My personal choice is to go for JUL for Java EE projects and SLF4J plus logback 
 [[other-samples]]
 == Other samples
 Here are some sources for more samples.
+
 * https://github.com/wildfly/quickstart[wildfly]
 ** Check out https://github.com/wildfly/quickstart/tree/10.x/cdi-injection[cdi-injection] for a very simple use of CDI
 * GlassFish comes with samples (in the `samples` subdir of GlassFish), also available through https://svn.java.net/svn/glassfish-samples~svn/trunk/ws/javaee7/[svn]

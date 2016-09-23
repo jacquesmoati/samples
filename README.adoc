@@ -139,8 +139,8 @@ My personal choice is to go for JUL for Java EE projects and SLF4J plus logback 
 == Other samples
 Here are some sources for more samples.
 
-* https://github.com/wildfly/quickstart[wildfly]
-** Check out https://github.com/wildfly/quickstart/tree/10.x/cdi-injection[cdi-injection] for a very simple use of CDI
-* GlassFish comes with samples (in the `samples` subdir of GlassFish), also available through https://svn.java.net/svn/glassfish-samples~svn/trunk/ws/javaee7/[svn]
-
+* https://github.com/wildfly/quickstart[wildfly]:
+** check out, for example, https://github.com/wildfly/quickstart/tree/10.x/cdi-injection[cdi-injection] for a very simple use of CDI.
+* GlassFish comes with (mostly elaborated) samples (in the `samples` subdir of GlassFish), also available through https://svn.java.net/svn/glassfish-samples~svn/trunk/ws/javaee7/[svn].
+* To access the samples with eclipse: I recommend to first git clone (or d/l) the repository, then use eclipse Maven import.
 

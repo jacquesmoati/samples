@@ -6,7 +6,7 @@
 Here are some samples about Java EE technologies (JPA in Java SE is covered as well). They serve two purposes:
 
 * give a head start (if you want a correctly configured project as a basis for work); and
-* support discussion around “best” practices by showing their applications in concrete, simple cases.
+* illustrate “best” practices in concrete, simple cases.
 
 To access these samples with Eclipse, I recommend to first git clone this repository, then, from Eclipse, use `Import… Existing Projects`.
 

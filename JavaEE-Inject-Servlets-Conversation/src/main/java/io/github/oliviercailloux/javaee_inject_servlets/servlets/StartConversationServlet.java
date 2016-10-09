@@ -14,10 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
 
+import io.github.oliviercailloux.javaee_inject_servlets.utils.ServletHelper;
+
 @WebServlet("/startConversationServlet")
 public class StartConversationServlet extends HttpServlet {
 	@Inject
 	private Conversation conversation;
+
+	@Inject
+	private ServletHelper helper;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,7 +36,8 @@ public class StartConversationServlet extends HttpServlet {
 		final ServletOutputStream out = resp.getOutputStream();
 		out.println("<html><body>");
 		out.println("<p>Started: " + conversation.getId() + ".</p>");
-		final String conversationUrl = "viewConversationServlet?cid=" + conversation.getId();
+		final String viewConversationServletURL = helper.getViewConversationServletURL();
+		final String conversationUrl = viewConversationServletURL + "?cid=" + conversation.getId();
 		out.println("<p>Check out <a href=\"" + conversationUrl + "\">that conversation</a>.</p>");
 		out.println("</body></html>");
 	}

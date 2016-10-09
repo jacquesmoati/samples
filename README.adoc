@@ -21,6 +21,9 @@ Just one servlet that says “Hello, world.”.
 === JavaEE-Inject-Servlets
 Illustrates CDI and servlets. Just one servlet that says “Hello, world.” thanks to a managed bean, injected into the servlet.
 
+=== JavaEE-Inject-Servlets-Conversation
+Illustrates usage of CDI conversations. (To use it, start by querying ViewConversationServlet, because of a possible https://issues.jboss.org/browse/WELD-2243[Weld bug].)
+
 === JavaEE-Inject-Produces-Servlets
 Shows usage of CDI (Injection of managed beans) and producers together with simple servlets. This will be useful only if you want to know about producers. Otherwise, check a simpler CDI sample (see <<other-samples>>).
 

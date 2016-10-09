@@ -16,7 +16,10 @@ Scroll down for the discussion about (what I consider to be) best practices.
 All projects use Maven and are designed for maximal compatibility. They should run on any Java EE 7 server. (Tested with GlassFish only.)
 
 === JavaEE-Servlets
-Just one servlet that says "Hello, world.".
+Just one servlet that says “Hello, world.”.
+
+=== JavaEE-Inject-Servlets
+Illustrates CDI and servlets. Just one servlet that says “Hello, world.” thanks to a managed bean, injected into the servlet.
 
 === JavaEE-Inject-Produces-Servlets
 Shows usage of CDI (Injection of managed beans) and producers together with simple servlets. This will be useful only if you want to know about producers. Otherwise, check a simpler CDI sample (see <<other-samples>>).

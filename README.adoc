@@ -37,6 +37,10 @@ A simple JPA project, using a single entity, simple CDI managed beans and two si
 
 * The `advanced` package illustrates different transaction management approaches.
 
+[[JavaEE-JPA-Inject-Servlets-JUnit]]
+=== JavaEE-JPA-Inject-Servlets-JUnit
+Illustrates (the awkwardness of) JUnit-testing servlets that use CDI. This sample uses standalone Weld. Not recommended: see <<Weld-SE, below>>.
+
 === JavaEE-JPA-JSF
 A simple JPA project with two simple JSF pages.
 
@@ -77,7 +81,23 @@ Sometimes the validation logic requires knowledge of the value of multiple field
 == Logging best practices
 [[logging-choice]]
 === Framework
-One of the PITA in Java world is the multiplicity of logging framework. My personal choice is to go for JUL for Java EE projects and SLF4J plus logback for Java SE projects.
+One of the PITA in Java world is the multiplicity of logging framework (see Antonio Goncalves’ related https://antoniogoncalves.org/2012/09/06/i-need-you-for-logging-api-spec-lead/[blog post]). My personal choice is to go for JUL for Java EE projects and SLF4J plus logback for Java SE projects.
+
+== Testing in Java EE
+[[JUnit]]
+=== JUnit
+Unit testing projects that heavily use CDI (or other container services) is not recommended: if you really wish to test properly in isolation, you need to mock up injected services, which is a pain (see The https://antoniogoncalves.org/2012/11/27/launching-the-nomock-movement/[NoMock] Movement and this https://antoniogoncalves.org/2012/01/16/wytiwyr-what-you-test-is-what-you-run/[opinion] for further details).
+
+[[Weld-SE]]
+=== Weld SE
+Relaxing the isolation requirement, a possible approach involves using a standalone Weld instance (using Weld SE) responsible for injecting the CDI managed beans. The <<JavaEE-JPA-Inject-Servlets-JUnit, sample>> above illustrates it. Observing how difficult and not clean it is, however, I’d rather recommend using an alternative (Arquillian comes to mind, see the opinion above).
+
+* In Weld SE, the file `beans.xml` is required even for `annotated` bean discovery mode in implicit bean archives. “In general, an implicit bean archive does not have to contain a beans.xml descriptor. However, such a bean archive is not supported by Weld SE, i.e. it’s excluded from discovery.” — Weld doc http://docs.jboss.org/weld/reference/latest-master/en-US/html/environments.html#_implicit_bean_archive_support_2[Implicit Bean Archive Support in Java SE] (compare normal http://docs.jboss.org/weld/reference/latest-master/en-US/html/ee.html#packaging-and-deployment[Packaging and deployment]).
+* Note that Weld has apparently a http://stackoverflow.com/a/30325614/859604[bug] that makes it fail if some test classes (or the `beans.xml` file) are in different folders than the main folder. This is the reason that, in my sample, some link:JavaEE-JPA-Inject-Servlets-JUnit/src/main/java/io/github/oliviercailloux/javaee_jpa_inject_servlets_junit/utils/ManagedReqScopeTester.java[classes] (and the link:JavaEE-JPA-Inject-Servlets-JUnit/src/main/resources/META-INF/xml.beans[`beans.xml`] file) are located in `/src/main/` whereas they should really be in `/src/test/`.
+* If you really want to go down that road, there’s ways to clean up the code a bit. Check out https://developer.jboss.org/wiki/CreatingUnitTestsWithWeldAndJunit4[Creating unit tests with Weld and Junit 4]. Also, other (better?) ways to manage the contexts exist, see http://docs.jboss.org/weld/reference/latest-master/en-US/html/contexts.html#_managing_the_built_in_contexts[Managing the built in contexts] in Weld doc; http://stackoverflow.com/questions/26631093/no-active-contexts-for-scope-type-javax-enterprise-context-requestscoped-when-in[SO].
+
+=== Live server
+See also: testing a https://antoniogoncalves.org/2012/10/24/no-you-dont-need-to-mock-your-soap-web-service-to-test-it/[SOAP] / https://antoniogoncalves.org/2012/12/19/test-your-jax-rs-2-0-web-service-uris-without-mocks/[JAX-RS] WS in a live HTTP Server.
 
 [[other-samples]]
 == Other samples
@@ -86,5 +106,5 @@ Here are some sources for more samples.
 * https://github.com/wildfly/quickstart[wildfly]:
 ** check out, for example, https://github.com/wildfly/quickstart/tree/10.x/cdi-injection[cdi-injection] for a very simple use of CDI.
 * GlassFish comes with (mostly elaborated) samples (in the `samples` subdir of GlassFish), also available through https://svn.java.net/svn/glassfish-samples~svn/trunk/ws/javaee7/[svn].
-* To access the samples with eclipse: I recommend to first git clone (or d/l) the repository, then use eclipse Maven import.
+* To access the samples with Eclipse: I recommend to first git clone (or d/l) the repository, then use Eclipse Maven import.
 

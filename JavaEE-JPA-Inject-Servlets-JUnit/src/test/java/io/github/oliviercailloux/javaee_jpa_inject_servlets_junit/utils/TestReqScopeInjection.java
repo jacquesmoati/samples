@@ -16,10 +16,6 @@ public class TestReqScopeInjection {
 			final WeldInstance<ReqScoped> instanceReqScoped = container.select(ReqScoped.class);
 			final ReqScoped req = instanceReqScoped.get();
 			final WeldInstance<ManagedReqScopeTester> instanceTester = container.select(ManagedReqScopeTester.class);
-			/**
-			 * Probably cleaner:
-			 * http://docs.jboss.org/weld/reference/latest-master/en-US/html/contexts.html#_managing_the_built_in_contexts
-			 */
 			final ManagedReqScopeTester tester = instanceTester.get();
 			assertEquals("Hi.", tester.getHi(req));
 		}

@@ -12,7 +12,7 @@ public class TestAppScopeInjection {
 	@Test
 	public void testAppScopeInjection() {
 		final Weld weld = new Weld();
-		try (WeldContainer container = weld.initialize()) {
+		try (WeldContainer container = weld.addPackages(true, InnerAppScoped.class).initialize()) {
 			final WeldInstance<OuterAppScoped> select = container.select(OuterAppScoped.class);
 			final OuterAppScoped outer = select.get();
 			assertEquals("Hello.", outer.getHello());

@@ -12,7 +12,8 @@ public class TestReqScopeInjection {
 	@Test
 	public void testReqScopeInjection() {
 		final Weld weld = new Weld();
-		try (WeldContainer container = weld.initialize()) {
+		try (WeldContainer container = weld.addPackages(true, InnerAppScoped.class)
+				.addBeanClass(ManagedReqScopeTester.class).initialize()) {
 			final WeldInstance<ReqScoped> instanceReqScoped = container.select(ReqScoped.class);
 			final ReqScoped req = instanceReqScoped.get();
 			final WeldInstance<ManagedReqScopeTester> instanceTester = container.select(ManagedReqScopeTester.class);

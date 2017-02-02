@@ -6,11 +6,9 @@
 Here are some samples about Java EE technologies (JPA in Java SE is covered as well). They serve two purposes:
 
 * give a head start (if you want a correctly configured project as a basis for work); and
-* illustrate “best” practices in concrete, simple cases.
+* illustrate link:https://github.com/oliviercailloux/java-course/Best practices/[“best” practices] in concrete, simple cases.
 
 To access these samples with Eclipse, I recommend to first git clone this repository, then, from Eclipse, use `Import… Existing Projects`.
-
-Scroll down for the discussion about (what I consider to be) best practices.
 
 == The sample projects
 All projects use Maven and are designed for maximal compatibility. They should run on any Java EE 7 server. (Tested with GlassFish only.)
@@ -45,72 +43,10 @@ Illustrates (the awkwardness of) JUnit-testing servlets that use CDI. This sampl
 A simple JPA project with two simple JSF pages.
 
 * Also illustrated: <<metamodel, typesafe JPA queries>>.
-* Also illustrated: <<multifield, multi field validation>>.
+* Also illustrated: <<JSF-multifield, multi field validation>>.
 
 === JavaSE-JUL-JPA-Hib-H2
 A simple JavaSE project featuring JPA, starring Hibernate as a JPA provider and H2 as a DB provider. This sample project uses JUL as a logger (contradicting my <<logging-choice, own preference>>).
-
-== Maven best practices
-
-=== Naming conventions
-
-* Maven coordinate identifiers (`groupId` and `artifactId`) should contain lowercase letters, digits, and hyphens only (https://maven.apache.org/maven-conventions.html[source]).
-* To make sure they are unique, use a domain name you control as a `groupId` (possibly adding sub-parts to it), and invert it (https://maven.apache.org/guides/mini/guide-naming-conventions.html[source]).
-* Java conventions suggest to ensure uniqueness of your package names using the same rule (source: http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html[tutorial], or see the non-normative note “Package names” in the http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.1[specs]).
-* Thus, I suggest naming your packages according to your `groupId` followed by a dot followed by your `artifactId`.
-* Hyphens are not allowed in package names, but underscores are (package names consist in dot-separated identifiers, see http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.4.1[JLS 7.4.1]; identifiers consist in a `JavaLetter` then a set of `JavaLetterOrDigit`, a `JavaLetter` being a character for which `Character.isJavaIdentifierStart(int)` returns `true`, see http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-Identifier[JLS Identifiers]; this includes the ASCII underscore (known as LOW LINE in Unicode, U+005F) but not the hyphen, see https://docs.oracle.com/javase/8/docs/api/index.html?java/lang/Character.html#isJavaIdentifierStart-int-[Character], http://www.fileformat.info/info/unicode/category/Pc/list.htm[Unicode], http://stackoverflow.com/a/32065830[SO]).
-* Thus, I suggest to transform hyphens used in `artifactId` into underscores when converting to package name. (Applying the conventional strategy for transforming domain names into valid Java identifiers.)
-* In Maven identifiers, avoid Java keywords and “words” consisting only of digits: they are legal in Maven but not convertible to Java identifiers.
-* Example: `groupId` = `io.github.oliviercailloux`; `artifactId` = `my-project-name`;  base package name = `io.github.oliviercailloux.my_project_name`.
-
-=== Encoding
-Include the property `<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>` in your POM to ensure platform-independent behavior (and get rid of the warning Maven prints otherwise).
-
-=== Java version
-Include properties: `<maven.compiler.source>1.8</maven.compiler.source> <maven.compiler.target>1.8</maven.compiler.target>` (or adjust to the desired java version) to indicate which java version you develop in (and for). This is https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html[officially supported] and is thus to be preferred to the more verbose explicit https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html[configuration] of the `maven-compiler-plugin`.
-
-=== Do not require web descriptor
-Web applications do not require a web descriptor (the `web.xml` file that goes in the `WEB-INF` folder). Maven however required it by default when asked to package a war file. If you do not need a web descriptor, make your project as clean as possible and do not include one! Rather, include the property `<failOnMissingWebXml>false</failOnMissingWebXml>` in your `pom.xml`.
-
-* [Note 1: As of Release 3.0.0 of the Apache Maven WAR Plugin, this is no more necessary: “The default value for failOnMissingWebXml has been changed from true to false.” (https://maven.apache.org/plugins/maven-war-plugin/index.html[source]). However including the property anyway improves your project compatibility. See also http://svn.apache.org/viewvc/maven/plugins/trunk/maven-war-plugin/src/main/java/org/apache/maven/plugins/war/WarMojo.java?view=log[source code history], http://svn.apache.org/viewvc/maven/plugins/tags/[releases].] 
-* [Note 2: Web applications do not require a web descriptor any more since more than 10 years, since Servlet 2.5 MR 5 (see JSR 340 Servlet 3.1 http://download.oracle.com/otn-pub/jcp/servlet-3_1-fr-eval-spec/servlet-3_1-final.pdf[spec], A.7.6 and 10.13).]
-
-== JPA best practices
-=== Use delimited identifiers
-Tell JPA to use delimited identifiers (see the object/relational xml mapping file, `orm.xml`, in the JPA samples). (See JSR 338 JPA 2.1 http://download.oracle.com/otn-pub/jcp/persistence-2_1-fr-eval-spec/JavaPersistence.pdf[spec], section 2.13.) JPA will then “delimit” (quote) all SQL identifiers, thus avoiding conflicts with e.g. table names that are also SQL keywords. Note that this render identifiers case sensitive. Delimited identifiers is off by default and may cause nasty problems, especially because SQL keywords differ by vendor (and it’s hard to keep track of all of them, see e.g. http://hsqldb.org/doc/guide/lists-app.html[here] or https://www.drupal.org/node/141051[here]). A typical problem with non delimited identifiers occurs when using an entity named `User`: this may work on some DBMS and fail at runtime on others.
-
-[[metamodel]]
-=== Metamodel generator for typesafe JPA queries
-To generate the metamodel for use with typesafe Criteria queries, suffices to include a metamodel generator in your classpath (http://hibernate.org/orm/tooling/[doc]). Set it to `<provided>` scope as your code does not depend on it at runtime. 
-
-* For correct integration in Eclipse (neon, Java EE version), I have installed `Maven Integration for Eclipse JDT Annotation Processor Toolkit`, then in the project settings, Maven / Annotation Processing, selected: Automatically configure JDT APT. (Eclipse also has an internal option to generate the metamodel, see the project options at JPA / Canonical metamodel, but I don’t use that as it would reduce compatibility of the project with other IDEs.)
-
-== JSF best practices
-[[multifield]]
-=== Multiple field validation
-Sometimes the validation logic requires knowledge of the value of multiple fields. (Example: required `start` ≤ `end`, where `start` and `end` are two request parameters.) In such case I consider the usual JSF validation approach (namely, by treating the problem in the JSF validation phase) inelegant, because it is designed for single-field validation. I prefer to use case-based navigation in the action phase. Some may disagree, see e.g. BalusC, “JSF ajax/action/listener methods are semantically the wrong place to do validation” http://stackoverflow.com/a/5897183/859604[here] and an alternative proposal http://balusc.omnifaces.org/2007/12/validator-for-multiple-fields.html[here]. 
-
-== Logging best practices
-[[logging-choice]]
-=== Framework
-One of the PITA in Java world is the multiplicity of logging framework (see Antonio Goncalves’ related https://antoniogoncalves.org/2012/09/06/i-need-you-for-logging-api-spec-lead/[blog post]). My personal default choice is to go for JUL for Java EE projects and SLF4J plus logback for Java SE projects.
-
-== Testing in Java EE
-[[JUnit]]
-=== JUnit
-Unit testing objects that heavily rely on CDI (or other container services) is not recommended: if you really wish to test properly in isolation, you need to mock up injected services, which is a pain (see The https://antoniogoncalves.org/2012/11/27/launching-the-nomock-movement/[NoMock] Movement and this https://antoniogoncalves.org/2012/01/16/wytiwyr-what-you-test-is-what-you-run/[opinion] for further details).
-
-[[Weld-SE]]
-=== Weld SE
-Relaxing the isolation requirement, a possible approach involves using a standalone Weld instance (using Weld SE) responsible for injecting the CDI managed beans. The <<JavaEE-JPA-Inject-Servlets-JUnit, sample>> above illustrates it. Observing how difficult and not clean it is, however, I’d rather recommend using an alternative (Arquillian comes to mind, see the opinion above).
-
-* In Weld SE, the file `beans.xml` is required even for `annotated` bean discovery mode in implicit bean archives. “In general, an implicit bean archive does not have to contain a beans.xml descriptor. However, such a bean archive is not supported by Weld SE, i.e. it’s excluded from discovery.” — Weld doc http://docs.jboss.org/weld/reference/latest-master/en-US/html/environments.html#_implicit_bean_archive_support_2[Implicit Bean Archive Support in Java SE] (compare normal http://docs.jboss.org/weld/reference/latest-master/en-US/html/ee.html#packaging-and-deployment[Packaging and deployment]).
-* Weld SE has apparently a http://stackoverflow.com/a/30325614/859604[bug] that makes it fail to discover beans that are in different subtrees than the `beans.xml` file. Following best practices, the test files (including the `beans.xml` file, required only for Weld SE) should be in the `/src/test/` subfolders. But this would trigger the bug, Weld SE throwing exceptions of the kind `org.jboss.weld.exceptions.UnsatisfiedResolutionException: WELD-001334: Unsatisfied dependencies for type (…) with qualifiers (…)`. In `weld-se-wrong-annotated-build-discovery-mode`, I worked around the bug by moving a https://github.com/oliviercailloux/samples/tree/weld-se-wrong-annotated-build-discovery-mode/JavaEE-JPA-Inject-Servlets-JUnit/src/main/java/io/github/oliviercailloux/javaee_jpa_inject_servlets_junit/utils/ManagedReqScopeTester.java[class] and the https://github.com/oliviercailloux/samples/tree/weld-se-wrong-annotated-build-discovery-mode/JavaEE-JPA-Inject-Servlets-JUnit/src/main/resources/META-INF/beans.xml[`beans.xml`] file in `/src/main/`. This has another problem however: Weld SE is now a compile-time dependency (and can’t be restricted to `<scope>test</scope>`), thus, should be upgraded to a compilation-scoped dependency in the https://github.com/oliviercailloux/samples/tree/weld-se-wrong-annotated-build-discovery-mode/JavaEE-JPA-Inject-Servlets-JUnit/pom.xml[`pom`]. That would be asking for trouble when deploying the app.
-* Thus I gave up on `annotated` bean discovery mode, removed the `beans.xml` file, and used dynamic http://docs.jboss.org/weld/reference/latest-master/en-US/html/environments.html#_bootstrapping_cdi_se[explicit] bean declaration when link:JavaEE-JPA-Inject-Servlets-JUnit/src/test/java/io/github/oliviercailloux/javaee_jpa_inject_servlets_junit/utils/TestReqScopeInjection.java[instantiating] the container.
-* If you really want to go for testing using Weld SE, there’s ways to clean up the code a bit compared to this sample (I don’t believe this would be enough to really bring a satisfactory solution to the whole testing requirements, thus I stopped investigating, but I’m willing to hear from you if you manage to make it work in a clean way). Check out https://developer.jboss.org/wiki/CreatingUnitTestsWithWeldAndJunit4[Creating unit tests with Weld and Junit 4]. Also, other (better?) ways to manage the contexts exist, see http://docs.jboss.org/weld/reference/latest-master/en-US/html/contexts.html#_managing_the_built_in_contexts[Managing the built in contexts] in Weld doc; http://stackoverflow.com/questions/26631093/no-active-contexts-for-scope-type-javax-enterprise-context-requestscoped-when-in[SO].
-
-=== Live server
-See also: testing a https://antoniogoncalves.org/2012/10/24/no-you-dont-need-to-mock-your-soap-web-service-to-test-it/[SOAP] / https://antoniogoncalves.org/2012/12/19/test-your-jax-rs-2-0-web-service-uris-without-mocks/[JAX-RS] WS in a live HTTP Server.
 
 [[other-samples]]
 == Other samples

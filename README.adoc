@@ -6,13 +6,13 @@
 Here are some samples about Java EE technologies (JPA in Java SE is covered as well). They serve two purposes:
 
 * give a head start (if you want a correctly configured project as a basis for work); and
-* illustrate link:https://github.com/oliviercailloux/java-course/Best practices/[“best” practices] in concrete, simple cases.
+* illustrate link:++https://github.com/oliviercailloux/java-course/tree/master/Best practices/++[“best” practices] in concrete, simple cases.
 
 To access these samples with Eclipse, I recommend to first git clone this repository, then, from Eclipse, use `Import… Existing Projects`.
 
-== The sample projects
 All projects use Maven and are designed for maximal compatibility. They should run on any Java EE 7 server. (Tested with GlassFish only.)
 
+== The sample projects
 === JavaEE-Servlets
 Just one servlet that says “Hello, world.”.
 
@@ -37,16 +37,13 @@ A simple JPA project, using a single entity, simple CDI managed beans and two si
 
 [[JavaEE-JPA-Inject-Servlets-JUnit]]
 === JavaEE-JPA-Inject-Servlets-JUnit
-Illustrates (the awkwardness of) JUnit-testing servlets that use CDI. This sample uses standalone Weld. Not recommended: see <<Weld-SE, below>>.
+Illustrates (the awkwardness of) JUnit-testing servlets that use CDI. This sample uses standalone Weld. Not recommended: see https://github.com/oliviercailloux/java-course/tree/master/Best%20practices/TestingEE.adoc#Weld-SE[Weld-SE] in my Best practices folder.
 
 === JavaEE-JPA-JSF
-A simple JPA project with two simple JSF pages.
-
-* Also illustrated: <<metamodel, typesafe JPA queries>>.
-* Also illustrated: <<JSF-multifield, multi field validation>>.
+A simple JPA project with two simple JSF pages. Also illustrated: https://github.com/oliviercailloux/java-course/tree/master/Best%20practices/JPA.adoc#metamodel[typesafe JPA queries], https://github.com/oliviercailloux/java-course/tree/master/Best%20practices/JSF.adoc#multifield[multi field validation].
 
 === JavaSE-JUL-JPA-Hib-H2
-A simple JavaSE project featuring JPA, starring Hibernate as a JPA provider and H2 as a DB provider. This sample project uses JUL as a logger (contradicting my <<logging-choice, own preference>>).
+A simple JavaSE project featuring JPA, starring Hibernate as a JPA provider and H2 as a DB provider. This sample project uses JUL as a logger (contradicting my https://github.com/oliviercailloux/java-course/tree/master/Best%20practices/Logging.adoc#logging-choice[own preference]).
 
 [[other-samples]]
 == Other samples

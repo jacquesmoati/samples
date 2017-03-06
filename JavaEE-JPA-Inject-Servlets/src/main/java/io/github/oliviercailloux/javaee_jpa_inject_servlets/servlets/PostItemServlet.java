@@ -21,6 +21,7 @@ import io.github.oliviercailloux.javaee_jpa_inject_servlets.utils.ServletHelper;
 public class PostItemServlet extends HttpServlet {
 	@PersistenceContext
 	private EntityManager em;
+
 	@Inject
 	private ItemService itemS;
 

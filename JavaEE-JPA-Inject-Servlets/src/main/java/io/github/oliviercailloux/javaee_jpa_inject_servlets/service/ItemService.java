@@ -15,6 +15,7 @@ import io.github.oliviercailloux.javaee_jpa_inject_servlets.utils.QueryHelper;
 public class ItemService {
 	@PersistenceContext
 	private EntityManager em;
+
 	@Inject
 	private QueryHelper helper;
 

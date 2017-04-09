@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Locale;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import io.github.oliviercailloux.javaee_jpa_inject_servlets.servlets.GetItemsServletJTAEntityManager;
 
-@ApplicationScoped
+@RequestScoped
 public class ServletHelper {
 	@Inject
 	private ServletContext context;

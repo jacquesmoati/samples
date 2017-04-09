@@ -1,11 +1,11 @@
 package io.github.oliviercailloux.javaee_jpa_inject_servlets.utils;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-@ApplicationScoped
+@RequestScoped
 public class QueryHelper {
 
 	public <T> CriteriaQuery<T> selectAll(CriteriaBuilder criteriaBuilder, Class<T> type) {

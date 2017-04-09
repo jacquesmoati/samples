@@ -1,13 +1,13 @@
 package io.github.oliviercailloux.javaee_inject_produces_servlets.servlets.advanced;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.javaee_inject_produces_servlets.model.User;
 import io.github.oliviercailloux.javaee_inject_produces_servlets.service.UserProducer;
+import io.github.oliviercailloux.javaee_inject_produces_servlets.utils.ServletHelper;
 
 @WebServlet("/getCustomUserServlet")
 @Transactional
@@ -43,7 +44,7 @@ public class GetCustomUserServlet extends HttpServlet {
 		final User user = userInstance.get();
 
 		@SuppressWarnings("resource")
-		final PrintWriter writer = resp.getWriter();
-		writer.write(user.getName());
+		final ServletOutputStream writer = ServletHelper.configureAndGetOutputStream(resp);
+		writer.println(user.getName());
 	}
 }

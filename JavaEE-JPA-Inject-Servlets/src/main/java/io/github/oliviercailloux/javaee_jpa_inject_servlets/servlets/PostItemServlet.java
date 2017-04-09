@@ -36,7 +36,6 @@ public class PostItemServlet extends HttpServlet {
 		final ZonedDateTime zonedTimestamp = ZonedDateTime.now(ZoneId.systemDefault());
 		item.setName("MyItem dated " + zonedTimestamp);
 		itemS.persist(item);
-		System.out.println("H: " + servletHelper + ".");
 		resp.sendRedirect(resp.encodeRedirectURL(servletHelper.getRedirectURL()));
 	}
 }

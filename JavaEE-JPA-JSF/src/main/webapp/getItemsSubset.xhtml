@@ -6,16 +6,26 @@
 	<f:viewParam id="start-param" name="start"
 		value="#{itemsSubsetRequest.start}">
 	</f:viewParam>
-	<f:viewParam name="end" value="#{itemsSubsetRequest.end}">
+	<f:viewParam id="end-param" name="end"
+		value="#{itemsSubsetRequest.end}">
 	</f:viewParam>
 	<f:viewAction action="#{itemsSubsetRequest.populate}"></f:viewAction>
 </f:metadata>
 <head>
 <meta charset="utf-8" />
-<title>All items</title>
+<title>Subset of items</title>
 </head>
 <body>
-	<h:messages></h:messages>
+	<h:panelGroup rendered="#{facesContext.validationFailed}">
+		<p>
+			Start:
+			<h:message for="start-param"></h:message>
+		</p>
+		<p>
+			End:
+			<h:message for="end-param"></h:message>
+		</p>
+	</h:panelGroup>
 	<h:panelGroup rendered="#{not facesContext.validationFailed}">
 		<p>
 			Here is your item sub-list, from

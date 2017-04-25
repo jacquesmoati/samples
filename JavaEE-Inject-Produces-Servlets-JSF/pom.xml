@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.oliviercailloux</groupId>
 	<artifactId>javaee-inject-produces-servlets-jsf</artifactId>
+	<name>JavaEE-Inject-Produces-Servlets-JSF</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>

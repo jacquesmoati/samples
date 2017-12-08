@@ -53,5 +53,4 @@ Here are some sources for more samples.
 ** check out, for example, https://github.com/wildfly/quickstart/tree/10.x/cdi-injection[cdi-injection] for a very simple use of CDI.
 * https://github.com/javaee-samples/javaee7-samples[Java EE 7 Samples]
 * GlassFish comes with (mostly elaborated) samples (in the `samples` subdir of GlassFish), also available through https://svn.java.net/svn/glassfish-samples~svn/trunk/ws/javaee7/[svn].
-* To access the samples with Eclipse: I recommend to first git clone (or d/l) the repository, then use Eclipse Maven import.
 

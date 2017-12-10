@@ -30,10 +30,13 @@ import io.github.oliviercailloux.javaee_jpa_inject_servlets.utils.ServletHelper;
 public class GetItemsManualTransactionServletJTAEntityManager extends HttpServlet {
 	@PersistenceContext
 	private EntityManager em;
+
 	@Inject
 	private QueryHelper helper;
+
 	@Inject
 	private ServletHelper servletHelper;
+
 	@Resource
 	private UserTransaction ut;
 
@@ -57,7 +60,7 @@ public class GetItemsManualTransactionServletJTAEntityManager extends HttpServle
 		try {
 			ut.begin();
 			assert (em.isJoinedToTransaction());
-			final CriteriaQuery<Item> query = helper.selectAll(em.getCriteriaBuilder(), Item.class);
+			final CriteriaQuery<Item> query = helper.selectAll(Item.class);
 			allItems = em.createQuery(query).getResultList();
 			for (Item item : allItems) {
 				assert (em.contains(item));

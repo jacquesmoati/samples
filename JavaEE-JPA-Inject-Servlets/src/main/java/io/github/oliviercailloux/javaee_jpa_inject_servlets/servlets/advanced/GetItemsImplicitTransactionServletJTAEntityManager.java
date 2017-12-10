@@ -22,8 +22,10 @@ import io.github.oliviercailloux.javaee_jpa_inject_servlets.utils.ServletHelper;
 public class GetItemsImplicitTransactionServletJTAEntityManager extends HttpServlet {
 	@PersistenceContext
 	private EntityManager em;
+
 	@Inject
 	private QueryHelper helper;
+
 	@Inject
 	private ServletHelper servletHelper;
 
@@ -39,7 +41,7 @@ public class GetItemsImplicitTransactionServletJTAEntityManager extends HttpServ
 		out.println("I use a no-lock read-only query with implicit transaction.");
 		out.flush();
 
-		final CriteriaQuery<Item> query = helper.selectAll(em.getCriteriaBuilder(), Item.class);
+		final CriteriaQuery<Item> query = helper.selectAll(Item.class);
 		final List<Item> allItems = em.createQuery(query).getResultList();
 		assert (!em.isJoinedToTransaction());
 		for (Item item : allItems) {

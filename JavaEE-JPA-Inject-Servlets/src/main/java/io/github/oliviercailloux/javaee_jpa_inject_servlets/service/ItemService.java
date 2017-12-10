@@ -21,7 +21,7 @@ public class ItemService {
 
 	@Transactional
 	public List<Item> getAll() {
-		return em.createQuery(helper.selectAll(em.getCriteriaBuilder(), Item.class)).getResultList();
+		return em.createQuery(helper.selectAll(Item.class)).getResultList();
 	}
 
 	@Transactional

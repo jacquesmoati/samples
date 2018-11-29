@@ -1,4 +1,7 @@
 detailed.log
 
 target/
+*/.classpath
+*/.project
+*/.settings/
 

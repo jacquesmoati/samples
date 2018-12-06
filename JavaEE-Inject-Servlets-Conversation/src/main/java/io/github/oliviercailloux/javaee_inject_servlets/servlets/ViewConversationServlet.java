@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import io.github.oliviercailloux.javaee_inject_servlets.service.Timestamp;
 
+@SuppressWarnings("serial")
 @WebServlet("/viewConversationServlet")
 public class ViewConversationServlet extends HttpServlet {
 	@Inject

@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import io.github.oliviercailloux.javaee_inject_servlets.utils.ServletHelper;
 
+@SuppressWarnings("serial")
 @WebServlet("/startConversationServlet")
 public class StartConversationServlet extends HttpServlet {
 	@Inject

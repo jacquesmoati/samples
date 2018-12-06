@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.enterprise.context.ConversationScoped;
 
+@SuppressWarnings("serial")
 @ConversationScoped
 public class Timestamp implements Serializable {
 	private final Instant t;

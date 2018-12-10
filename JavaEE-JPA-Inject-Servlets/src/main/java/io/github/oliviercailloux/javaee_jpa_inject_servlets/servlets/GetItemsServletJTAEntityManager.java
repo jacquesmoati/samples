@@ -17,6 +17,7 @@ import io.github.oliviercailloux.javaee_jpa_inject_servlets.model.Item;
 import io.github.oliviercailloux.javaee_jpa_inject_servlets.service.ItemService;
 import io.github.oliviercailloux.javaee_jpa_inject_servlets.utils.ServletHelper;
 
+@SuppressWarnings("serial")
 @WebServlet("/getItemsServletJTAEntityManager")
 public class GetItemsServletJTAEntityManager extends HttpServlet {
 	@PersistenceContext
@@ -47,5 +48,6 @@ public class GetItemsServletJTAEntityManager extends HttpServlet {
 		for (Item item : allItems) {
 			out.println(item.getName());
 		}
+		out.println("End.");
 	}
 }

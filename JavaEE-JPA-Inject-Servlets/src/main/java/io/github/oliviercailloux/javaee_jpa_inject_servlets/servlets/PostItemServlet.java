@@ -17,6 +17,7 @@ import io.github.oliviercailloux.javaee_jpa_inject_servlets.model.Item;
 import io.github.oliviercailloux.javaee_jpa_inject_servlets.service.ItemService;
 import io.github.oliviercailloux.javaee_jpa_inject_servlets.utils.ServletHelper;
 
+@SuppressWarnings("serial")
 @WebServlet("/postItemServlet")
 public class PostItemServlet extends HttpServlet {
 	@PersistenceContext
